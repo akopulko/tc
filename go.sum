@@ -1,0 +1,4 @@
+github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815 h1:bWDMxwH3px2JBh6AyO7hdCn/PkvCZXii8TGj7sbtEbQ=
+github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
+github.com/navossoc/bayesian v0.0.0-20171203014413-18fc5ea11e24 h1:4CbuTHh8VYL6BoZj3sPUsDb4BPB8UEHTN0f5kQTGI2M=
+github.com/navossoc/bayesian v0.0.0-20171203014413-18fc5ea11e24/go.mod h1:P1c1lcW3JeYIRbVw98K6qNHJq/3hX4ru5SCQc84ZbZo=
