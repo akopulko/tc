@@ -18,7 +18,7 @@ Usage:
 
 Options:
 	-h --help     			Show this screen.
-	---out <output_file> 	CSV file to save catagorised transactions. By default they are printed on screen
+	---out <output_file> 	CSV file to save categorised transactions. By default they are printed on screen
 	--learn      			LEt the model learn during transactions classification
 `
 
@@ -84,7 +84,7 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Printf("Trained model successfuly saved to: %s\n", modelFile)
+		fmt.Printf("Trained model successfully saved to: %s\n", modelFile)
 	}
 
 	if cmdLineArgs.Classify && len(cmdLineArgs.StatementFile) > 0 {

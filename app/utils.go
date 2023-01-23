@@ -22,7 +22,7 @@ func contains(s []string, str string) bool {
 	return false
 }
 
-// checks if strig is numeric
+// checks if string is numeric
 func isNumeric(word string) bool {
 	return regexp.MustCompile(`^\d+$`).MatchString(word)
 }
@@ -103,12 +103,12 @@ func saveCSV(content [][]string, file string) error {
 		return err
 	}
 
-	csvwriter := csv.NewWriter(f)
+	csvWriter := csv.NewWriter(f)
 
 	for _, row := range content {
-		_ = csvwriter.Write(row)
+		_ = csvWriter.Write(row)
 	}
-	csvwriter.Flush()
+	csvWriter.Flush()
 	f.Close()
 
 	return nil

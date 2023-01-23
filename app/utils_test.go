@@ -149,7 +149,7 @@ func Test_checkFeature(t *testing.T) {
 func Test_ParseTrainingEntry(t *testing.T) {
 
 	var tests = []struct {
-		trainig          []string
+		training         []string
 		expectedCat      string
 		expectedFeatures []string
 	}{
@@ -160,17 +160,22 @@ func Test_ParseTrainingEntry(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		tname := tc.trainig[0]
+		tname := tc.training[0]
 		t.Run(tname, func(t *testing.T) {
-			actual1, actual2 := parseTrainingEntry(tc.trainig)
+			actual1, actual2 := parseTrainingEntry(tc.training)
 			if (actual1 != tc.expectedCat) || (!reflect.DeepEqual(actual2, tc.expectedFeatures)) {
-				t.Errorf("Expected (%s | %v) is not same as actual (%s | %v)", tc.expectedCat, tc.expectedFeatures, actual1, actual2)
+				t.Errorf(
+					"Expected (%s | %v) is not same as actual (%s | %v)",
+					tc.expectedCat,
+					tc.expectedFeatures,
+					actual1,
+					actual2,
+				)
 			}
 		})
 	}
 }
 
-// need to fix this test with cintains as some time map order is not the same
 func Test_getCategories(t *testing.T) {
 	var tests = []struct {
 		name     string
@@ -190,11 +195,62 @@ func Test_getCategories(t *testing.T) {
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
 			actual := getCategories(tc.data)
-			// if !reflect.DeepEqual(actual, tc.expected) {
-			// 	t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
-			// }
 			slices.Sort(actual)
 			slices.Sort(tc.expected)
+			if !slices.Equal(actual, tc.expected) {
+				t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
+			}
+		})
+	}
+}
+
+func Test_buildTrainingMap(t *testing.T) {
+	var tests = []struct {
+		name     string
+		data     [][]string
+		expected map[string][]string
+	}{
+		{
+			"Test to build training map from CSV data",
+			[][]string{
+				{"Food Market 233", "Groceries"},
+				{"Corner Shop 233", "Groceries"},
+				{"Beer & Wine World", "Alcohol"},
+			},
+			map[string][]string{
+				"Groceries": {"Food", "Market", "Corner", "Shop"},
+				"Alcohol":   {"Beer", "Wine", "World"},
+			},
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			actual := buildTrainingMap(tc.data)
+			if !reflect.DeepEqual(actual, tc.expected) {
+				t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
+			}
+		})
+	}
+
+}
+
+func Test_extractTransactionFeatures(t *testing.T) {
+	var tests = []struct {
+		name     string
+		testData string
+		expected []string
+	}{
+		{
+			"Test to extract features from transaction",
+			"food shop number 23 X",
+			[]string{"food", "shop", "number"},
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			actual := extractTransactionFeatures(tc.testData)
 			if !slices.Equal(actual, tc.expected) {
 				t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
 			}
