@@ -23,7 +23,3 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-    
-    - name: Build
-      working-directory: app
-      run: GOARCH=arm64 GOOS=darwin go build -mod vendor *.go
