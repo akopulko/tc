@@ -2,3 +2,5 @@ github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815 h1:bWDMxwH3px2JBh
 github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
 github.com/navossoc/bayesian v0.0.0-20171203014413-18fc5ea11e24 h1:4CbuTHh8VYL6BoZj3sPUsDb4BPB8UEHTN0f5kQTGI2M=
 github.com/navossoc/bayesian v0.0.0-20171203014413-18fc5ea11e24/go.mod h1:P1c1lcW3JeYIRbVw98K6qNHJq/3hX4ru5SCQc84ZbZo=
+golang.org/x/exp v0.0.0-20230118134722-a68e582fa157 h1:fiNkyhJPUvxbRPbCqY/D9qdjmPzfHcpK3P4bM4gioSY=
+golang.org/x/exp v0.0.0-20230118134722-a68e582fa157/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=

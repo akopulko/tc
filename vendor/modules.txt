@@ -4,3 +4,7 @@ github.com/docopt/docopt-go
 # github.com/navossoc/bayesian v0.0.0-20171203014413-18fc5ea11e24
 ## explicit
 github.com/navossoc/bayesian
+# golang.org/x/exp v0.0.0-20230118134722-a68e582fa157
+## explicit; go 1.18
+golang.org/x/exp/constraints
+golang.org/x/exp/slices

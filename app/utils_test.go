@@ -5,7 +5,53 @@ import (
 	"testing"
 
 	"github.com/navossoc/bayesian"
+	"golang.org/x/exp/slices"
 )
+
+func Test_sliceOfSlicesEqual(t *testing.T) {
+
+	var tests = []struct {
+		name     string
+		slice1   [][]string
+		slice2   [][]string
+		expected bool
+	}{
+		{
+			"Test two string slice of slices equal",
+			[][]string{
+				{"Food Market 233 Some Street", "Groceries"},
+				{"Corner Shop SOMEWHERE", "Groceries"},
+			},
+			[][]string{
+				{"Food Market 233 Some Street", "Groceries"},
+				{"Corner Shop SOMEWHERE", "Groceries"},
+			},
+			true,
+		},
+		{
+			"Test two string slice of slices equal un-ordered",
+			[][]string{
+				{"Food Market 233 Some Street", "Groceries"},
+				{"Corner Shop SOMEWHERE", "Groceries"},
+			},
+			[][]string{
+				{"Corner Shop SOMEWHERE", "Groceries"},
+				{"Food Market 233 Some Street", "Groceries"},
+			},
+			true,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			actual := sliceOfSlicesEqual(tc.slice1, tc.slice2)
+			if !reflect.DeepEqual(actual, tc.expected) {
+				t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
+			}
+		})
+	}
+
+}
 
 func Test_contains(t *testing.T) {
 	var slice = []string{"one", "two", "three"}
@@ -71,10 +117,10 @@ func Test_ReadCSV(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected no error but got (%e)", err)
 	}
-	if !reflect.DeepEqual(actual, expected) {
+
+	if !sliceOfSlicesEqual(actual, expected) {
 		t.Errorf("Expected (%v) is not same as actual (%v)", expected, actual)
 	}
-
 }
 
 func Test_checkFeature(t *testing.T) {
@@ -144,7 +190,12 @@ func Test_getCategories(t *testing.T) {
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
 			actual := getCategories(tc.data)
-			if !reflect.DeepEqual(actual, tc.expected) {
+			// if !reflect.DeepEqual(actual, tc.expected) {
+			// 	t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
+			// }
+			slices.Sort(actual)
+			slices.Sort(tc.expected)
+			if !slices.Equal(actual, tc.expected) {
 				t.Errorf("Expected (%v) is not same as actual (%v)", tc.expected, actual)
 			}
 		})

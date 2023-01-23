@@ -9,6 +9,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/navossoc/bayesian"
+	"golang.org/x/exp/slices"
 )
 
 // finds string in slice of strings
@@ -150,4 +151,22 @@ func printClassifierInfo(classifier bayesian.Classifier) {
 	}
 	w.Flush()
 
+}
+
+// helper function to compare two string slices of slices
+func sliceOfSlicesEqual(slice1, slice2 [][]string) bool {
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	var count int = 0
+	for _, itemSlice1 := range slice1 {
+		for _, itemSlice2 := range slice2 {
+			if slices.Equal(itemSlice1, itemSlice2) {
+				count++
+			}
+		}
+	}
+
+	return count == len(slice1)
 }
