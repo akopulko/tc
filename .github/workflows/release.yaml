@@ -1,0 +1,18 @@
+on:
+  release:
+    types: [created]
+
+jobs:
+  release-darwin-arm64:
+    name: release dawrin/arm64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: wangyoucao577/go-release-action@v1.35
+      with:
+        github_token: ${{ secrets.MY_SECRET }}
+        goos: darwin
+        goarch: arm64
+        project_path: "./app"
+        binary_name: "tc"
+        extra_files: LICENSE README.md
