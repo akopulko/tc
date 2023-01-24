@@ -16,3 +16,29 @@ jobs:
         project_path: "./app"
         binary_name: "tc"
         extra_files: LICENSE README.md
+  release-darwin-amd64:
+    name: release dawrin/amd64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: wangyoucao577/go-release-action@v1.35
+      with:
+        github_token: ${{ secrets.MY_SECRET }}
+        goos: darwin
+        goarch: amd64
+        project_path: "./app"
+        binary_name: "tc"
+        extra_files: LICENSE README.md
+  release-windows-amd64:
+    name: release windows/amd64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: wangyoucao577/go-release-action@v1.35
+      with:
+        github_token: ${{ secrets.MY_SECRET }}
+        goos: windows
+        goarch: amd64
+        project_path: "./app"
+        binary_name: "tc"
+        extra_files: LICENSE README.md
