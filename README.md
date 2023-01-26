@@ -35,7 +35,7 @@ model.gob      statement.csv  tc*            training.csv
 
 foo@test [tc]$ ./tc classify statement.csv
 DATE       |AMT       |TRANSACTION          |CATEGORY
-22/10/2022 | -10.00   | Purchse Food Stall  |Groceries
+22/10/2022 | -10.00   | Purchase Food Stall  |Groceries
 12/12/2022 | -50.00   | Amazon MKT          |Shopping
 31/12/2022 | -30.00   | Wine Bottle Shop    |Alcohol
 01/01/2023 | -20.99   | eBay Purchase 12345 |Shopping
