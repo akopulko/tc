@@ -97,6 +97,8 @@ func buildTrainingMap(data [][]string) map[string][]string {
 // saves content to csv file
 func saveCSV(content [][]string, file string) error {
 
+	var header = []string{"DATE", "AMT", "TRN", "CATEG"}
+
 	f, err := os.Create(file)
 
 	if err != nil {
@@ -104,6 +106,8 @@ func saveCSV(content [][]string, file string) error {
 	}
 
 	csvWriter := csv.NewWriter(f)
+
+	_ = csvWriter.Write(header)
 
 	for _, row := range content {
 		_ = csvWriter.Write(row)
